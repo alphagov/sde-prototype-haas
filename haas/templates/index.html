@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="govuk-heading-m">
+
+    </div>
+
+    <div class="govuk-body">
+
+      <form action="/analytics" method="post" novalidate>
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              This service will provide you with a hexagram reading
+            </h1>
+          </legend>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="address-line-1">
+              How many hexagrams would you like? Traditionally 6 are used, but you can choose.
+            </label>
+            <input class="govuk-input" id="hex_count" name="hex_count" type="number" autocomplete="hex_count">
+          </div>
+        </fieldset>
+    </div>
+    <div class="govuk-button-group">
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      </form>
+
+    </div>
+{% endblock %}

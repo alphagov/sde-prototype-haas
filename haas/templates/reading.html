@@ -1,21 +1,34 @@
 {% extends 'base.html' %}
 
-{% block gtm_head %}
-  <meta property="og:image" content="release-v4.1.0/assets/images/govuk-opengraph-image.png">
+{% block head %}
+  {{ super() }}
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','{{container_id}}');</script>
+  })(window,document,'script','dataLayer','{{ container_id }}');</script>
   <!-- End Google Tag Manager -->
 {% endblock %}
 
-{% block gtm_body %}
+{% block bodyStart %}
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id="{{container_id}}
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-{% endblock %} 
+{% endblock %}
 
-{% block hex %}{% endblock %}
+{% block content %}
+  <div class="govuk-heading-m">
+    <h2><p>This is your reading </p></h2>
+    <p class="govuk-heading-xl">{{ hexagrams|map(attribute='hex')|join('') }}</p>
+  </div>
+
+  {% for hexagram in hexagrams %}
+    <div class="govuk-body">
+      <p class="govuk-heading-s">{{ hexagram.character }} - {{ hexagram.pinyin }} - {{ hexagram.name }}</p>
+      <p>{{ hexagram.meaning }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}

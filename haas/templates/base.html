@@ -1,0 +1,47 @@
+{% extends 'govuk_frontend_jinja/template.html' %}
+{% from 'govuk_frontend_jinja/components/cookie-banner/macro.html' import govukCookieBanner %}
+{% from 'govuk_frontend_jinja/components/header/macro.html' import govukHeader %}
+{% from 'govuk_frontend_jinja/components/footer/macro.html' import govukFooter %}
+
+{% set assetPath = url_for('static', filename='').rstrip('/') %}
+
+{% block pageTitle %}HaaS - The best place to find hexagrams{% endblock %}
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+  <link href="{{ url_for('static',filename='govuk-frontend-4.1.0.min.css') }}" rel="stylesheet">
+  <!--<![endif]-->
+
+  <!--[if IE 8]>
+    <link href="{{ url_for('static', filename='govuk-frontend-ie8-4.1.0.min.css') }}" rel="stylesheet">
+  <![endif]-->
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    "homepageUrl": SDE_prototype_home_URL,
+    "productName": "HaaS",
+  }) }}
+{% endblock %}
+
+{% block footer %}
+  {{ govukFooter({
+    'meta': {
+      'items': [
+        {
+          'text': 'SDE Sandbox Homepage',
+          'href': SDE_prototype_home_URL,
+        },
+        {
+          'text': 'Source code',
+          'href': 'https://github.com/Nyzl/HaaS',
+        },
+      ],
+    }
+  }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  <script src="{{ url_for('static', filename='govuk-frontend-4.1.0.min.js') }}"></script>
+  <script>window.GOVUKFrontend.initAll()</script>
+{% endblock %}
