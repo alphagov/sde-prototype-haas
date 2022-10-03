@@ -1,3 +1,4 @@
 Flask
+flask-assets
 gunicorn
 govuk-frontend-jinja

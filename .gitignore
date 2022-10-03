@@ -115,3 +115,9 @@ dmypy.json
 
 # IDE stuff
 .vscode/
+
+# generated static assets
+haas/static/cookies*.js
+
+# node stuff
+node_modules/

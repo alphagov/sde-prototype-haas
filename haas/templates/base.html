@@ -17,6 +17,95 @@
   <![endif]-->
 {% endblock %}
 
+{% block bodyStart %}
+  {% block gtm_body %}{% endblock %}
+
+  {% set html %}
+    <p class="govuk-body">We use some essential cookies to make this service work.</p>
+    <p class="govuk-body">We'd also like to use analytics cookies so we can understand
+    how you use the service and make improvements.</p>
+  {% endset %}
+
+  {% set accept_html %}
+    <p class="govuk-body">You've accepted additional cookies. You can <a
+      class="govuk-link" href="#"> change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+  {% set reject_html %}
+    <p class="govuk-body">You've rejected additional cookies. You can <a
+      class="govuk-link" href="#"> change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+  {{ govukCookieBanner({
+    'hidden': False,
+    'ariaLabel': 'Cookies on HaaS',
+    'attributes': {
+      'data-module': 'govuk-cookie-banner',
+    },
+    'messages': [
+      {
+        'headingText': 'Cookies on HaaS',
+        'html': html,
+        'classes': 'js-cookie-banner-message',
+        'actions': [
+          {
+            'text': 'Accept analytics cookies',
+            'name': 'cookies',
+            'value': 'accept',
+            'attributes': {
+              'data-accept-cookies': 'true',
+            }
+          },
+          {
+            'text': 'Reject analytics cookies',
+            'name': 'cookies',
+            'value': 'reject',
+            'attributes': {
+              'data-reject-cookies': 'true',
+            }
+          },
+          {
+            'text': 'View cookies',
+            'href': '#'
+          }
+        ]
+      },
+      {
+        'html': accept_html,
+        'classes': 'js-cookie-banner-confirmation-accept',
+        'role': 'alert',
+        'actions': [
+          {
+            'text': 'Hide cookie message',
+            'type': 'button',
+            'href': '#',
+            'attributes': {
+              'data-hide-cookie-message': 'true',
+            }
+          }
+        ],
+        'hidden': True
+      },
+      {
+        'html': reject_html,
+        'classes': 'js-cookie-banner-confirmation-reject',
+        'role': 'alert',
+        'actions': [
+          {
+            'text': 'Hide cookie message',
+            'type': 'button',
+            'href': '#',
+            'attributes': {
+              'data-hide-cookie-message': 'true',
+            }
+          }
+        ],
+        'hidden': True
+      }
+    ]
+  }) }}
+{% endblock %}
+
 {% block header %}
   {{ govukHeader({
     "homepageUrl": SDE_prototype_home_URL,
@@ -44,4 +133,6 @@
 {% block bodyEnd %}
   <script src="{{ url_for('static', filename='govuk-frontend-4.1.0.min.js') }}"></script>
   <script>window.GOVUKFrontend.initAll()</script>
+  {% assets "cookies_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
+
 {% endblock %}

@@ -1,8 +1,11 @@
 from flask import Flask
+from flask_assets import Environment
 from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader
 
 
 app = Flask(__name__, static_url_path="/assets")
+assets = Environment(app)
+assets.from_module("haas.assets")
 
 app.jinja_loader = ChoiceLoader(
     [
