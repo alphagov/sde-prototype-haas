@@ -34,3 +34,8 @@ def analytics_ua():
         title="Hexagrams",
         hexagrams=generate_hex(num),
     )
+
+
+@app.get("/cookies")
+def cookies():
+    return render_template("cookies.html")
