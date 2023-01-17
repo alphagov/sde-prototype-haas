@@ -44,7 +44,7 @@ assets: consent_api
 
 .PHONY: run
 run:
-	flask --debug run --debugger --reload
+	flask --debug run --debugger --reload --port $(PORT)
 
 .PHONY: docker-image
 docker-image: assets

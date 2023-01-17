@@ -138,5 +138,10 @@
   <script src="{{ url_for('static', filename='govuk-frontend-4.1.0.min.js') }}"></script>
   <script>window.GOVUKFrontend.initAll()</script>
   {% assets "cookies_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
-
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.ConsentAPIClient = new Consent();
+      window.ConsentAPIClient.init({"host": "{{ getenv('CONSENT_API_HOST') }}"})
+    })
+  </script>
 {% endblock %}
