@@ -20,6 +20,7 @@ def home():
         "index.html", 
         container_id=container_id[ga_version], 
         title="Home",
+        type=ga_version,
     )
 
 
@@ -45,6 +46,7 @@ def analytics():
         container_id=container_id[ga_version],
         title="Hexagrams",
         hexagrams=generate_hex(num),
+        type=ga_version,
     )
 
 
@@ -55,4 +57,5 @@ def cookies():
     return render_template(
         "cookies.html", 
         container_id=container_id[ga_version],
+        type=ga_version,
     )
